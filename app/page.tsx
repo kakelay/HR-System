@@ -8,13 +8,14 @@ import { Footer } from "@/components/footer";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="max-h-screen bg-gray-50">
       <Header />
       <DesktopNavigation />
       <main>
         <HeroCarousel />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
-          <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 sm:gap-6">
+        {/* ❌ Removed container and padding classes */}
+        <div className="py-4 sm:py-6 lg:py-8">
+          <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8">
             <div className="xl:col-span-3 space-y-4 sm:space-y-6">
               <CEOMessage />
               <MainContent />
@@ -25,7 +26,7 @@ export default function HomePage() {
           </div>
         </div>
       </main>
-       <Footer/>
+      <Footer />
     </div>
   );
 }
