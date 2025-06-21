@@ -1,6 +1,14 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Building, MapPin, Briefcase, Users } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Building,
+  MapPin,
+  Briefcase,
+  Users,
+  FileText,
+  UserPlus,
+  BadgeCheck,
+} from "lucide-react";
 
 const stats = [
   {
@@ -27,11 +35,12 @@ const stats = [
     value: "3,600",
     color: "text-green-500",
   },
-]
+];
 
 export function QuickLook() {
   return (
     <div className="space-y-6">
+      {/* Organization Overview */}
       <Card>
         <CardHeader>
           <CardTitle>Quick Look</CardTitle>
@@ -51,6 +60,7 @@ export function QuickLook() {
         </CardContent>
       </Card>
 
+      {/* Events */}
       <Card>
         <CardHeader>
           <CardTitle>Upcoming Events</CardTitle>
@@ -60,6 +70,7 @@ export function QuickLook() {
         </CardContent>
       </Card>
 
+      {/* Trainings */}
       <Card>
         <CardHeader>
           <CardTitle>Upcoming Trainings</CardTitle>
@@ -82,6 +93,45 @@ export function QuickLook() {
           </Button>
         </CardContent>
       </Card>
+
+      {/* HR System Overview */}
+      <Card>
+        <CardHeader>
+          <CardTitle>HR System Overview</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 rounded-lg bg-gray-100 text-indigo-500">
+              <FileText className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="font-semibold">12</div>
+              <div className="text-sm text-gray-500">Leave Requests</div>
+            </div>
+          </div>
+          <div className="flex items-center space-x-3">
+            <div className="p-2 rounded-lg bg-gray-100 text-emerald-500">
+              <BadgeCheck className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="font-semibold">3</div>
+              <div className="text-sm text-gray-500">Job Openings</div>
+            </div>
+          </div>
+          <div className="flex items-center space-x-3">
+            <div className="p-2 rounded-lg bg-gray-100 text-pink-500">
+              <UserPlus className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="font-semibold">5</div>
+              <div className="text-sm text-gray-500">New Joiners</div>
+            </div>
+          </div>
+          <Button variant="link" className="p-0 h-auto text-indigo-600 mt-4">
+            Go to HR Dashboard
+          </Button>
+        </CardContent>
+      </Card>
     </div>
-  )
+  );
 }
