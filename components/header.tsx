@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Search, User, ChevronDown, Menu, X, LogOut, Settings, UserCircle } from "lucide-react"
+import { Search, User, ChevronDown, Menu, X, LogOut, Settings, UserCircle, Shield, Crown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -19,7 +19,15 @@ export function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [user, setUser] = useState<{ username: string; email: string } | null>(null)
+  const [user, setUser] = useState<{
+    id: number
+    username: string
+    email: string
+    phone: string
+    role: string
+    avatar: string
+    displayName: string
+  } | null>(null)
 
   // Check login status on component mount and listen for changes
   useEffect(() => {
@@ -65,6 +73,33 @@ export function Header() {
       // Stay on current page - no redirect needed
     } catch (error) {
       console.error("Error during logout:", error)
+    }
+  }
+
+  // Get role icon and color
+  const getRoleDisplay = (role: string) => {
+    switch (role) {
+      case "superAdmin":
+        return {
+          icon: Crown,
+          color: "text-yellow-500",
+          label: "Super Admin",
+          bgColor: "bg-yellow-50",
+        }
+      case "admin":
+        return {
+          icon: Shield,
+          color: "text-red-500",
+          label: "Admin",
+          bgColor: "bg-red-50",
+        }
+      default:
+        return {
+          icon: User,
+          color: "text-blue-500",
+          label: "User",
+          bgColor: "bg-blue-50",
+        }
     }
   }
 
@@ -147,20 +182,42 @@ export function Header() {
                   <Button variant="ghost" className="text-white hover:bg-white/10 h-8 sm:h-10 px-2 sm:px-3">
                     <div className="flex items-center space-x-2">
                       <Avatar className="h-6 w-6 sm:h-8 sm:w-8">
-                        <AvatarImage src="/placeholder-avatar.jpg" alt={user.username} />
+                        <AvatarImage
+                          src={user.avatar || "/placeholder.svg"}
+                          alt={user.displayName}
+                          crossOrigin="anonymous"
+                        />
                         <AvatarFallback className="bg-white/20 text-white text-xs">
-                          {user.username.charAt(0).toUpperCase()}
+                          {user.displayName
+                            ? user.displayName
+                                .split(" ")
+                                .map((n) => n[0])
+                                .join("")
+                                .toUpperCase()
+                            : user.username.charAt(0).toUpperCase()}
                         </AvatarFallback>
                       </Avatar>
-                      <span className="hidden sm:inline text-sm font-medium">{user.username}</span>
+                      <span className="hidden sm:inline text-sm font-medium">{user.displayName}</span>
                       <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
                     </div>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
                   <div className="px-3 py-2">
-                    <p className="text-sm font-medium">{user.username}</p>
+                    <p className="text-sm font-medium">{user.displayName}</p>
                     <p className="text-xs text-gray-500">{user.email}</p>
+                    <div className="flex items-center mt-1">
+                      {(() => {
+                        const roleDisplay = getRoleDisplay(user.role)
+                        const RoleIcon = roleDisplay.icon
+                        return (
+                          <>
+                            <RoleIcon className={`h-3 w-3 ${roleDisplay.color} mr-1`} />
+                            <span className="text-xs font-medium text-gray-600">{roleDisplay.label}</span>
+                          </>
+                        )
+                      })()}
+                    </div>
                   </div>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
@@ -212,14 +269,36 @@ export function Header() {
                   <div className="mb-6 p-4 bg-gray-50 rounded-lg">
                     <div className="flex items-center space-x-3">
                       <Avatar className="h-10 w-10">
-                        <AvatarImage src="/placeholder-avatar.jpg" alt={user.username} />
+                        <AvatarImage
+                          src={user.avatar || "/placeholder.svg"}
+                          alt={user.displayName}
+                          crossOrigin="anonymous"
+                        />
                         <AvatarFallback className="bg-[#a53c6f] text-white">
-                          {user.username.charAt(0).toUpperCase()}
+                          {user.displayName
+                            ? user.displayName
+                                .split(" ")
+                                .map((n) => n[0])
+                                .join("")
+                                .toUpperCase()
+                            : user.username.charAt(0).toUpperCase()}
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-medium text-gray-900">{user.username}</p>
+                        <p className="font-medium text-gray-900">{user.displayName}</p>
                         <p className="text-sm text-gray-500">{user.email}</p>
+                        <div className="flex items-center mt-1">
+                          {(() => {
+                            const roleDisplay = getRoleDisplay(user.role)
+                            const RoleIcon = roleDisplay.icon
+                            return (
+                              <>
+                                <RoleIcon className={`h-3 w-3 ${roleDisplay.color} mr-1`} />
+                                <span className="text-xs font-medium text-gray-600">{roleDisplay.label}</span>
+                              </>
+                            )
+                          })()}
+                        </div>
                       </div>
                     </div>
                     <div className="mt-3 flex space-x-2">
