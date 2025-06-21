@@ -16,7 +16,7 @@ export function IdleWarningModal({
   isOpen,
   onStayLoggedIn,
   onLogout,
-  warningTime = 120, // 2 minutes default
+  warningTime = 60, // 2 minutes default
 }: IdleWarningModalProps) {
   const [timeLeft, setTimeLeft] = useState(warningTime)
 

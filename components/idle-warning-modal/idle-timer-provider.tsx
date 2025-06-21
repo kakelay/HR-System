@@ -34,7 +34,7 @@ export function IdleTimerProvider({ children }: IdleTimerProviderProps) {
   }, []);
 
   const { resetTimer } = useIdleTimer({
-    timeout: 1 * 60 * 1000, // 1 minute for testing
+    timeout: 2 * 60 * 1000, // 1 minute for testing
     warningTime: 15 * 1000, // 15 seconds warning for testing
     onWarning: () => {
       if (isLoggedIn) {
@@ -68,7 +68,7 @@ export function IdleTimerProvider({ children }: IdleTimerProviderProps) {
           isOpen={showWarning}
           onStayLoggedIn={handleStayLoggedIn}
           onLogout={handleLogout}
-          warningTime={120} // 2 minutes in seconds
+          warningTime={60} //  minutes in seconds
         />
       )}
     </>
