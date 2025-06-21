@@ -5,6 +5,7 @@ import { QuickLook } from "@/components/quick-look";
 import { MainContent } from "@/components/main-content";
 import { DesktopNavigation } from "@/components/desktop-navigation";
 import { Footer } from "@/components/footer";
+import { ScrollToTopButton } from "@/components/scrolltotopbtton";
 
 export default function HomePage() {
   return (
@@ -13,7 +14,6 @@ export default function HomePage() {
       <DesktopNavigation />
       <main>
         <HeroCarousel />
-        {/* ❌ Removed container and padding classes */}
         <div className="py-4 sm:py-6 lg:py-8">
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8">
             <div className="xl:col-span-3 space-y-4 sm:space-y-6">
@@ -27,6 +27,7 @@ export default function HomePage() {
         </div>
       </main>
       <Footer />
+      <ScrollToTopButton /> {/* 👈 Go Back to Top */}
     </div>
   );
 }
