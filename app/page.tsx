@@ -1,9 +1,10 @@
-import { Header } from "@/components/header"
-import { HeroCarousel } from "@/components/hero-carousel"
-import { CEOMessage } from "@/components/ceo-message"
-import { QuickLook } from "@/components/quick-look"
-import { MainContent } from "@/components/main-content"
-import { DesktopNavigation } from "@/components/desktop-navigation"
+import { Header } from "@/components/header";
+import { HeroCarousel } from "@/components/hero-carousel";
+import { CEOMessage } from "@/components/ceo-message";
+import { QuickLook } from "@/components/quick-look";
+import { MainContent } from "@/components/main-content";
+import { DesktopNavigation } from "@/components/desktop-navigation";
+import { Footer } from "@/components/footer";
 
 export default function HomePage() {
   return (
@@ -24,6 +25,7 @@ export default function HomePage() {
           </div>
         </div>
       </main>
+       <Footer/>
     </div>
-  )
+  );
 }
