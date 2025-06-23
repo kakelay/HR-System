@@ -184,10 +184,8 @@ export function SignInForm() {
               <Building2 className="h-8 w-8 text-purple-600" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">NATO</h1>
-          <p className="text-white/80 text-sm">
-            NATO Microfinance Institution Plc
-          </p>
+          <h1 className="text-3xl font-bold text-white mb-2">NETO</h1>
+          <p className="text-white/80 text-sm">NETO Testing</p>
         </div>
 
         {/* Sign In Card */}
@@ -379,7 +377,7 @@ export function SignInForm() {
         {/* Footer */}
         <div className="mt-8 text-center">
           <p className="text-white/60 text-xs">
-            © 2024 NATO Microfinance Institution Plc. All rights reserved.
+            © 2024 NETO Testing All rights reserved.
           </p>
         </div>
       </div>

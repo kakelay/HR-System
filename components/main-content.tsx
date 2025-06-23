@@ -1,12 +1,25 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
- 
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
 import {
   BarChart3,
   TrendingUp,
@@ -20,8 +33,8 @@ import {
   DollarSign,
   Percent,
   Target,
-} from "lucide-react"
-import { PerformanceCharts } from "./charts BI/performance-charts"
+} from "lucide-react";
+import { PerformanceCharts } from "./charts BI/performance-charts";
 
 const performanceData = [
   {
@@ -69,7 +82,7 @@ const performanceData = [
     change: "-9.5%",
     status: "excellent",
   },
-]
+];
 
 const kpiCards = [
   {
@@ -108,40 +121,50 @@ const kpiCards = [
     color: "text-purple-600",
     bgColor: "bg-purple-50",
   },
-]
+];
 
 export function MainContent() {
-  const [selectedPeriod, setSelectedPeriod] = useState("current")
-  const [selectedView, setSelectedView] = useState("table")
-  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [selectedPeriod, setSelectedPeriod] = useState("current");
+  const [selectedView, setSelectedView] = useState("table");
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const handleRefresh = () => {
-    setIsRefreshing(true)
-    setTimeout(() => setIsRefreshing(false), 2000)
-  }
+    setIsRefreshing(true);
+    setTimeout(() => setIsRefreshing(false), 2000);
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "excellent":
-        return "bg-green-100 text-green-800 border-green-200"
+        return "bg-green-100 text-green-800 border-green-200";
       case "good":
-        return "bg-blue-100 text-blue-800 border-blue-200"
+        return "bg-blue-100 text-blue-800 border-blue-200";
       case "warning":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200"
+        return "bg-yellow-100 text-yellow-800 border-yellow-200";
       case "danger":
-        return "bg-red-100 text-red-800 border-red-200"
+        return "bg-red-100 text-red-800 border-red-200";
       default:
-        return "bg-gray-100 text-gray-800 border-gray-200"
+        return "bg-gray-100 text-gray-800 border-gray-200";
     }
-  }
+  };
 
   const getTrendIcon = (trend: string, change: string) => {
-    const isPositive = change.startsWith("+")
+    const isPositive = change.startsWith("+");
     if (trend === "up") {
-      return <TrendingUp className={`h-4 w-4 ${isPositive ? "text-green-500" : "text-red-500"}`} />
+      return (
+        <TrendingUp
+          className={`h-4 w-4 ${
+            isPositive ? "text-green-500" : "text-red-500"
+          }`}
+        />
+      );
     }
-    return <TrendingDown className={`h-4 w-4 ${isPositive ? "text-green-500" : "text-red-500"}`} />
-  }
+    return (
+      <TrendingDown
+        className={`h-4 w-4 ${isPositive ? "text-green-500" : "text-red-500"}`}
+      />
+    );
+  };
 
   return (
     <div className="space-y-6">
@@ -153,7 +176,10 @@ export function MainContent() {
               <AlertCircle className="h-5 w-5 text-orange-500" />
               Latest Announcements
             </CardTitle>
-            <Badge variant="secondary" className="bg-orange-100 text-orange-800">
+            <Badge
+              variant="secondary"
+              className="bg-orange-100 text-orange-800"
+            >
               2 New
             </Badge>
           </div>
@@ -163,7 +189,9 @@ export function MainContent() {
             <div className="relative z-10">
               <div className="flex items-start justify-between mb-4">
                 <div>
-                  <h3 className="text-xl font-bold mb-2">អនុសាសន៍ ចំ រៀន ទេ ទូលបានការអនុវត្ត</h3>
+                  <h3 className="text-xl font-bold mb-2">
+                    អនុសាសន៍ ចំ រៀន ទេ ទូលបានការអនុវត្ត
+                  </h3>
                   <p className="text-sm opacity-90">ប្រាក់ដុល</p>
                 </div>
                 <Badge className="bg-yellow-500 text-black">Priority</Badge>
@@ -174,14 +202,21 @@ export function MainContent() {
               </div>
             </div>
             <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-400 rounded-full -translate-y-16 translate-x-16"></div>
-            <div className="absolute bottom-0 right-0 text-6xl opacity-20">🏆</div>
+            <div className="absolute bottom-0 right-0 text-6xl opacity-20">
+              🏆
+            </div>
           </div>
           <div className="mt-4 flex items-center justify-between">
             <div className="text-sm text-gray-600">
-              <p className="mb-2">អនុសាសន៍ ចំ រៀន ទេ ទូលបានការអនុវត្តនិងការអនុវត្ត...</p>
-              <a href="#" className="text-blue-600 hover:underline flex items-center gap-1">
+              <p className="mb-2">
+                អនុសាសន៍ ចំ រៀន ទេ ទូលបានការអនុវត្តនិងការអនុវត្ត...
+              </p>
+              <a
+                href="#"
+                className="text-blue-600 hover:underline flex items-center gap-1"
+              >
                 <Eye className="h-4 w-4" />
-                https://intranet.NATOcambodia.com
+                https://intranet.NETOcambodia.com
               </a>
             </div>
             <Button variant="outline" size="sm">
@@ -198,13 +233,19 @@ export function MainContent() {
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">{kpi.title}</p>
-                  <p className="text-2xl font-bold text-gray-900">{kpi.value}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    {kpi.title}
+                  </p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {kpi.value}
+                  </p>
                   <div className="flex items-center gap-1 mt-1">
                     {getTrendIcon(kpi.trend, kpi.change)}
                     <span
                       className={`text-sm font-medium ${
-                        kpi.change.startsWith("+") ? "text-green-600" : "text-red-600"
+                        kpi.change.startsWith("+")
+                          ? "text-green-600"
+                          : "text-red-600"
                       }`}
                     >
                       {kpi.change}
@@ -226,7 +267,9 @@ export function MainContent() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5 text-blue-600" />
-              <CardTitle className="text-blue-600">Performance Analytics Dashboard</CardTitle>
+              <CardTitle className="text-blue-600">
+                Performance Analytics Dashboard
+              </CardTitle>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
@@ -261,11 +304,17 @@ export function MainContent() {
                 disabled={isRefreshing}
                 className="flex items-center gap-2"
               >
-                <RefreshCw className={`h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`} />
+                <RefreshCw
+                  className={`h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`}
+                />
                 Refresh
               </Button>
 
-              <Button variant="outline" size="sm" className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-2"
+              >
                 <Download className="h-4 w-4" />
                 Export
               </Button>
@@ -275,8 +324,13 @@ export function MainContent() {
         <CardContent>
           <div className="mb-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-purple-600 text-lg">Achievement Summary 2025</h3>
-              <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+              <h3 className="font-semibold text-purple-600 text-lg">
+                Achievement Summary 2025
+              </h3>
+              <Badge
+                variant="outline"
+                className="bg-purple-50 text-purple-700 border-purple-200"
+              >
                 Last Updated: 2 hours ago
               </Badge>
             </div>
@@ -288,9 +342,15 @@ export function MainContent() {
                 <TableHeader>
                   <TableRow className="bg-gray-50">
                     <TableHead className="font-semibold">METRICS</TableHead>
-                    <TableHead className="font-semibold">Mar/25 (Unaudited)</TableHead>
-                    <TableHead className="font-semibold">Apr/25 (Unaudited)</TableHead>
-                    <TableHead className="font-semibold">BP2025 Target</TableHead>
+                    <TableHead className="font-semibold">
+                      Mar/25 (Unaudited)
+                    </TableHead>
+                    <TableHead className="font-semibold">
+                      Apr/25 (Unaudited)
+                    </TableHead>
+                    <TableHead className="font-semibold">
+                      BP2025 Target
+                    </TableHead>
                     <TableHead className="font-semibold">Trend</TableHead>
                     <TableHead className="font-semibold">Status</TableHead>
                   </TableRow>
@@ -298,16 +358,22 @@ export function MainContent() {
                 <TableBody>
                   {performanceData.map((row, index) => (
                     <TableRow key={index} className="hover:bg-gray-50">
-                      <TableCell className="font-medium">{row.description}</TableCell>
+                      <TableCell className="font-medium">
+                        {row.description}
+                      </TableCell>
                       <TableCell className="font-mono">{row.mar25}</TableCell>
                       <TableCell className="font-mono">{row.apr25}</TableCell>
-                      <TableCell className="font-mono font-semibold">{row.bp2025}</TableCell>
+                      <TableCell className="font-mono font-semibold">
+                        {row.bp2025}
+                      </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
                           {getTrendIcon(row.trend, row.change)}
                           <span
                             className={`text-sm font-medium ${
-                              row.change.startsWith("+") ? "text-green-600" : "text-red-600"
+                              row.change.startsWith("+")
+                                ? "text-green-600"
+                                : "text-red-600"
                             }`}
                           >
                             {row.change}
@@ -315,8 +381,12 @@ export function MainContent() {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge className={getStatusColor(row.status)} variant="outline">
-                          {row.status.charAt(0).toUpperCase() + row.status.slice(1)}
+                        <Badge
+                          className={getStatusColor(row.status)}
+                          variant="outline"
+                        >
+                          {row.status.charAt(0).toUpperCase() +
+                            row.status.slice(1)}
                         </Badge>
                       </TableCell>
                     </TableRow>
@@ -332,8 +402,13 @@ export function MainContent() {
                 <Card key={index} className="hover:shadow-md transition-shadow">
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-3">
-                      <h4 className="font-semibold text-gray-900">{item.description}</h4>
-                      <Badge className={getStatusColor(item.status)} variant="outline">
+                      <h4 className="font-semibold text-gray-900">
+                        {item.description}
+                      </h4>
+                      <Badge
+                        className={getStatusColor(item.status)}
+                        variant="outline"
+                      >
                         {item.status}
                       </Badge>
                     </div>
@@ -355,7 +430,9 @@ export function MainContent() {
                           {getTrendIcon(item.trend, item.change)}
                           <span
                             className={`text-sm font-medium ${
-                              item.change.startsWith("+") ? "text-green-600" : "text-red-600"
+                              item.change.startsWith("+")
+                                ? "text-green-600"
+                                : "text-red-600"
                             }`}
                           >
                             {item.change}
@@ -369,9 +446,11 @@ export function MainContent() {
             </div>
           )}
 
-          {selectedView === "chart" && <PerformanceCharts selectedPeriod={selectedPeriod} />}
+          {selectedView === "chart" && (
+            <PerformanceCharts selectedPeriod={selectedPeriod} />
+          )}
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

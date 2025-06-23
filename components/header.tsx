@@ -159,12 +159,12 @@ export function Header() {
             href="/"
             className="flex items-center space-x-2 sm:space-x-4 flex-shrink-0"
           >
-            <div className="text-xl sm:text-2xl font-bold">NATO</div>
+            <div className="text-xl sm:text-2xl font-bold">NETO</div>
             <div className="hidden sm:block text-xs sm:text-sm">
               <div className="hidden lg:block">
-                Nato Microfinance Institution Plc
+                NETO Solution
               </div>
-              <div className="lg:hidden">NATO Microfinance</div>
+              <div className="lg:hidden">NETO</div>
             </div>
           </Link>
 

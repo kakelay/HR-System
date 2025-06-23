@@ -7,8 +7,8 @@ import { IdleTimerProvider } from "@/components/idle-warning-modal/idle-timer-pr
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "NATO Microfinance Institution",
-  description: "NATO Microfinance Institution Dashboard",
+  title: "NETO Webiste",
+  description: "NETO Dashboard",
 }
 
 export default function RootLayout({
