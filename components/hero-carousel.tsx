@@ -42,13 +42,13 @@ export function HeroCarousel() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + carouselItems.length) % carouselItems.length)
 
   return (
-    <div className="relative h-[500px] overflow-hidden shadow-lg">
+    <div className="relative h-[360px] overflow-hidden shadow-lg">
       <div
         className="flex transition-transform duration-700 ease-in-out h-full"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
         {carouselItems.map((item) => (
-          <div key={item.id} className="min-w-full relative h-full">
+          <div key={item.id} className="min-w-full  relative h-full">
             <img
               src={item.image}
               alt={item.title}

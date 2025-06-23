@@ -5,7 +5,7 @@ import { Facebook, Linkedin, Mail, Phone } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-[#a53c6f] text-white py-8 mt-10">
+    <footer className="bg-[#1F2937] text-[#F9FAFB] py-8 mt-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
@@ -21,16 +21,16 @@ export function Footer() {
             <h4 className="text-lg font-semibold mb-3">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="hover:underline">Home</Link>
+                <Link href="/" className="hover:text-[#E11D48] transition-colors">Home</Link>
               </li>
               <li>
-                <Link href="/about" className="hover:underline">About Us</Link>
+                <Link href="/about" className="hover:text-[#E11D48] transition-colors">About Us</Link>
               </li>
               <li>
-                <Link href="/services" className="hover:underline">Services</Link>
+                <Link href="/services" className="hover:text-[#E11D48] transition-colors">Services</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:underline">Contact</Link>
+                <Link href="/contact" className="hover:text-[#E11D48] transition-colors">Contact</Link>
               </li>
             </ul>
           </div>
@@ -48,16 +48,16 @@ export function Footer() {
             </div>
             <div className="flex space-x-4 mt-4">
               <Link href="https://facebook.com" target="_blank" aria-label="Facebook">
-                <Facebook className="h-5 w-5 hover:text-gray-200" />
+                <Facebook className="h-5 w-5 hover:text-[#E11D48] transition-colors" />
               </Link>
               <Link href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5 hover:text-gray-200" />
+                <Linkedin className="h-5 w-5 hover:text-[#E11D48] transition-colors" />
               </Link>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/20 mt-8 pt-4 text-center text-xs text-white/80">
+        <div className="border-t border-white/20 mt-8 pt-4 text-center text-xs text-white/50">
           © {new Date().getFullYear()} Nato Microfinance Institution Plc. All rights reserved.
         </div>
       </div>

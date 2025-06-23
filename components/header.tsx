@@ -1,80 +1,96 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Search, User, ChevronDown, Menu, X, LogOut, Settings, UserCircle, Shield, Crown } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { useState, useEffect } from "react";
+import {
+  Search,
+  User,
+  ChevronDown,
+  Menu,
+  X,
+  LogOut,
+  Settings,
+  UserCircle,
+  Shield,
+  Crown,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import Link from "next/link"
+} from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
 export function Header() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<{
-    id: number
-    username: string
-    email: string
-    phone: string
-    role: string
-    avatar: string
-    displayName: string
-  } | null>(null)
+    id: number;
+    username: string;
+    email: string;
+    phone: string;
+    role: string;
+    avatar: string;
+    displayName: string;
+  } | null>(null);
 
   // Check login status on component mount and listen for changes
   useEffect(() => {
     const checkLoginStatus = () => {
-      const loginStatus = localStorage.getItem("isLoggedIn")
-      const userData = localStorage.getItem("userData")
+      const loginStatus = localStorage.getItem("isLoggedIn");
+      const userData = localStorage.getItem("userData");
 
       if (loginStatus === "true" && userData) {
-        setIsLoggedIn(true)
-        setUser(JSON.parse(userData))
+        setIsLoggedIn(true);
+        setUser(JSON.parse(userData));
       } else {
-        setIsLoggedIn(false)
-        setUser(null)
+        setIsLoggedIn(false);
+        setUser(null);
       }
-    }
+    };
 
-    checkLoginStatus()
+    checkLoginStatus();
 
     // Listen for storage changes (useful for auto-logout)
-    window.addEventListener("storage", checkLoginStatus)
+    window.addEventListener("storage", checkLoginStatus);
 
     return () => {
-      window.removeEventListener("storage", checkLoginStatus)
-    }
-  }, [])
+      window.removeEventListener("storage", checkLoginStatus);
+    };
+  }, []);
 
   const handleLogout = () => {
     try {
       // Clear localStorage
-      localStorage.removeItem("isLoggedIn")
-      localStorage.removeItem("userData")
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userData");
 
       // Update local state immediately
-      setIsLoggedIn(false)
-      setUser(null)
+      setIsLoggedIn(false);
+      setUser(null);
 
       // Close mobile menu if open
-      setIsMobileMenuOpen(false)
+      setIsMobileMenuOpen(false);
 
       // Force a storage event to notify other components
-      window.dispatchEvent(new Event("storage"))
+      window.dispatchEvent(new Event("storage"));
 
       // Stay on current page - no redirect needed
     } catch (error) {
-      console.error("Error during logout:", error)
+      console.error("Error during logout:", error);
     }
-  }
+  };
 
   // Get role icon and color
   const getRoleDisplay = (role: string) => {
@@ -85,23 +101,23 @@ export function Header() {
           color: "text-yellow-500",
           label: "Super Admin",
           bgColor: "bg-yellow-50",
-        }
+        };
       case "admin":
         return {
           icon: Shield,
           color: "text-red-500",
           label: "Admin",
           bgColor: "bg-red-50",
-        }
+        };
       default:
         return {
           icon: User,
           color: "text-blue-500",
           label: "User",
           bgColor: "bg-blue-50",
-        }
+        };
     }
-  }
+  };
 
   const navigationItems = [
     {
@@ -132,17 +148,22 @@ export function Header() {
       title: "Bulletin",
       items: ["News", "Updates", "Notifications"],
     },
-  ]
+  ];
 
   return (
-    <header className="bg-[#a53c6f] text-white sticky top-0 z-50">
+    <header className="bg-[#1F2937] text-white sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
+          <Link
+            href="/"
+            className="flex items-center space-x-2 sm:space-x-4 flex-shrink-0"
+          >
             <div className="text-xl sm:text-2xl font-bold">NATO</div>
             <div className="hidden sm:block text-xs sm:text-sm">
-              <div className="hidden lg:block">Nato Microfinance Institution Plc</div>
+              <div className="hidden lg:block">
+                Nato Microfinance Institution Plc
+              </div>
               <div className="lg:hidden">NATO Microfinance</div>
             </div>
           </Link>
@@ -171,7 +192,11 @@ export function Header() {
             </div>
 
             {/* Search - Mobile */}
-            <Button variant="ghost" size="icon" className="md:hidden text-white hover:bg-white/10 h-8 w-8">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden text-white hover:bg-white/10 h-8 w-8"
+            >
               <Search className="h-4 w-4" />
             </Button>
 
@@ -179,7 +204,10 @@ export function Header() {
             {isLoggedIn && user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="text-white hover:bg-white/10 h-8 sm:h-10 px-2 sm:px-3">
+                  <Button
+                    variant="ghost"
+                    className="text-white hover:bg-white/10 h-8 sm:h-10 px-2 sm:px-3"
+                  >
                     <div className="flex items-center space-x-2">
                       <Avatar className="h-6 w-6 sm:h-8 sm:w-8">
                         <AvatarImage
@@ -197,7 +225,9 @@ export function Header() {
                             : user.username.charAt(0).toUpperCase()}
                         </AvatarFallback>
                       </Avatar>
-                      <span className="hidden sm:inline text-sm font-medium">{user.displayName}</span>
+                      <span className="hidden sm:inline text-sm font-medium">
+                        {user.displayName}
+                      </span>
                       <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
                     </div>
                   </Button>
@@ -208,14 +238,18 @@ export function Header() {
                     <p className="text-xs text-gray-500">{user.email}</p>
                     <div className="flex items-center mt-1">
                       {(() => {
-                        const roleDisplay = getRoleDisplay(user.role)
-                        const RoleIcon = roleDisplay.icon
+                        const roleDisplay = getRoleDisplay(user.role);
+                        const RoleIcon = roleDisplay.icon;
                         return (
                           <>
-                            <RoleIcon className={`h-3 w-3 ${roleDisplay.color} mr-1`} />
-                            <span className="text-xs font-medium text-gray-600">{roleDisplay.label}</span>
+                            <RoleIcon
+                              className={`h-3 w-3 ${roleDisplay.color} mr-1`}
+                            />
+                            <span className="text-xs font-medium text-gray-600">
+                              {roleDisplay.label}
+                            </span>
                           </>
-                        )
+                        );
                       })()}
                     </div>
                   </div>
@@ -229,7 +263,10 @@ export function Header() {
                     <span>Settings</span>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <DropdownMenuItem
+                    onClick={handleLogout}
+                    className="text-red-600 cursor-pointer"
+                  >
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Sign out</span>
                   </DropdownMenuItem>
@@ -250,7 +287,11 @@ export function Header() {
             {/* Mobile Menu */}
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="lg:hidden text-white h-8 w-8 sm:h-10 sm:w-10">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="lg:hidden text-white h-8 w-8 sm:h-10 sm:w-10"
+                >
                   <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </SheetTrigger>
@@ -274,7 +315,7 @@ export function Header() {
                           alt={user.displayName}
                           crossOrigin="anonymous"
                         />
-                        <AvatarFallback className="bg-[#a53c6f] text-white">
+                        <AvatarFallback className="bg-[#1F2937] text-white">
                           {user.displayName
                             ? user.displayName
                                 .split(" ")
@@ -285,18 +326,24 @@ export function Header() {
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-medium text-gray-900">{user.displayName}</p>
+                        <p className="font-medium text-gray-900">
+                          {user.displayName}
+                        </p>
                         <p className="text-sm text-gray-500">{user.email}</p>
                         <div className="flex items-center mt-1">
                           {(() => {
-                            const roleDisplay = getRoleDisplay(user.role)
-                            const RoleIcon = roleDisplay.icon
+                            const roleDisplay = getRoleDisplay(user.role);
+                            const RoleIcon = roleDisplay.icon;
                             return (
                               <>
-                                <RoleIcon className={`h-3 w-3 ${roleDisplay.color} mr-1`} />
-                                <span className="text-xs font-medium text-gray-600">{roleDisplay.label}</span>
+                                <RoleIcon
+                                  className={`h-3 w-3 ${roleDisplay.color} mr-1`}
+                                />
+                                <span className="text-xs font-medium text-gray-600">
+                                  {roleDisplay.label}
+                                </span>
                               </>
-                            )
+                            );
                           })()}
                         </div>
                       </div>
@@ -334,13 +381,16 @@ export function Header() {
                 <div className="space-y-2">
                   {navigationItems.map((item) => (
                     <DropdownMenu key={item.title}>
-                      <DropdownMenuTrigger className="flex items-center justify-between w-full p-3 text-left hover:bg-[#fbe9f1] text-[#a53c6f] rounded-lg font-medium">
+                      <DropdownMenuTrigger className="flex items-center justify-between w-full p-3 text-left hover:bg-[#E11D48] text-[#1F2937] rounded-lg font-medium">
                         <span className="text-sm">{item.title}</span>
                         <ChevronDown className="h-4 w-4" />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="w-full">
                         {item.items.map((subItem) => (
-                          <DropdownMenuItem key={subItem} className="text-sm hover:bg-[#fbe9f1] hover:text-[#a53c6f]">
+                          <DropdownMenuItem
+                            key={subItem}
+                            className="text-sm hover:bg-[#E11D48] hover:text-[#1F2937]"
+                          >
                             {subItem}
                           </DropdownMenuItem>
                         ))}
@@ -354,5 +404,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
